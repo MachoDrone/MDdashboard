@@ -141,12 +141,12 @@ fi
 #        exit 0
 #    fi
 #else
-if 1+1=2 
+#if 1+1=2 
     append_start_script
     configure_autologin
     edit_logind_conf
     echo "Script installed successfully."
-fi
+#fi
 
 # Instruct user to reboot to test, store script
 echo .

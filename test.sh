@@ -53,120 +53,109 @@ echo .
 # Function to append start script to .profile
 append_start_script() {
     # Append the start script for the Nosana node to .profile
-#    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     bash <(wget -qO- https://nosana.io/testgrid.sh)\n fi\n' >> .profile
-#    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     bash <(wget -qO- https://nosana.io/testgrid.sh)\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty7 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty8 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty9 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty10 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty11 ]]; then\n     echo hello\n fi\n' >> .profile
-    sudo printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty12 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     chvt 2\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     exit\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty7 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty8 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty9 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty10 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty11 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty12 ]]; then\n     echo hello\n fi\n' >> .profile
 }
 
 # Function to configure autologin for tty1
 configure_autologin() {
     # Create the directory for systemd service override
-#    mkdir -p /etc/systemd/system/getty@tty1.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty2.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty3.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty4.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty5.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty6.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty7.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty8.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty9.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty10.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty11.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty12.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty1.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty2.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty3.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty4.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty5.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty6.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty7.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty8.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty9.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty10.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty11.service.d/
+    mkdir -p ~/.config/systemd/user/getty@tty12.service.d/
 
     # Set up autologin in override.conf
-#    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty2.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty3.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty4.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty5.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty6.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty7.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty8.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty9.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty10.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty11.service.d/override.conf >/dev/null
-    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" | sudo tee /etc/systemd/system/getty@tty12.service.d/override.conf >/dev/null
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty1.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty2.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty3.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty4.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty5.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty6.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty7.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty8.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty9.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty10.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty11.service.d/override.conf
+    printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $USER %%I \$TERM\nType=idle\n" > ~/.config/systemd/user/getty@tty12.service.d/override.conf
 }
 
-# Function to edit /etc/systemd/logind.conf to enable autologin
+# Function to edit /etc/systemd/logind.conf
 edit_logind_conf() {
-    # Remove the "#" from "#NAutoVTs=" to enable autologin
-    sudo sed -i 's/^#NAutoVTs=/NAutoVTs=/' /etc/systemd/logind.conf
+    # Edit /etc/systemd/logind.conf to enable autologin
+    sudo sed -i '/^NAutoVTs/ s/^/# Commented by autonosnode script: /' /etc/systemd/logind.conf
+    sudo sed -i '/^#NAutoVTs/ s/^/# Commented by autonosnode script: /' /etc/systemd/logind.conf
+    sudo sed -i '/^ReserveVT/ s/^/# Commented by autonosnode script: /' /etc/systemd/logind.conf
+    sudo sed -i '/^#ReserveVT/ s/^/# Commented by autonosnode script: /' /etc/systemd/logind.conf
+    echo "NAutoVTs=12" | sudo tee -a /etc/systemd/logind.conf
+    echo "ReserveVT=13" | sudo tee -a /etc/systemd/logind.conf
 }
 
 # Function to uninstall the script
-#uninstall_script() {
-#    echo "Uninstalling the script..."
-#    # Remove the appended lines from .profile
-#    sed -i '/# Launch Nosana node start script/,/# End of Nosana node start script/d' .profile
-#    # Remove the autologin configuration
-#    sudo rm -rf /etc/systemd/system/getty@tty1.service.d/
-    # Revert changes in logind.conf
-#    sudo sed -i 's/^NAutoVTs=/#NAutoVTs=/' /etc/systemd/logind.conf
-#    echo "Script uninstalled successfully."
-#}
+uninstall_script() {
+    echo "Uninstalling the script..."
+    # Remove the appended lines from .profile
+    sed -i '/# Launch Nosana node start script/,/# End of Nosana node start script/d' .profile
 
-# Check if the script is being run with sudo
-# if [ "$(id -u)" != "0" ]; then
-#    echo "*** This script must be run with sudo. Exiting... ***" >&2
-#    exit 1
-#fi
+    # Remove the systemd service override configurations
+    rm -rf ~/.config/systemd/user/getty@tty1.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty2.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty3.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty4.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty5.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty6.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty7.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty8.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty9.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty10.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty11.service.d/
+    rm -rf ~/.config/systemd/user/getty@tty12.service.d/
 
-# Ask for confirmation under the box
+    # Restore /etc/systemd/logind.conf to its original state
+    sudo sed -i '/^# Commented by autonosnode script: / s/^# Commented by autonosnode script: //' /etc/systemd/logind.conf
+    sudo sed -i '/^NAutoVTs=12/d' /etc/systemd/logind.conf
+    sudo sed -i '/^ReserveVT=13/d' /etc/systemd/logind.conf
+
+    echo "Script uninstalled successfully."
+}
+
+# Main script execution
 draw_box
-read -p "Do you want to proceed? (y/n): " confirm
-if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
-    echo "Exiting..."
-    exit 0
-fi
-
-# Check if the script has already been run so it offers to uninstall
-#if grep -q "# Launch Nosana node start script" .profile; then
-#    echo "The script has already been run."
-#    read -p "Would you like to uninstall the script? (y/n): " choice
-#    if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
-#        uninstall_script
-#    else
-#        echo "Exiting..."
-#        exit 0
-#    fi
-#else
-#if 1+1=2 
+read -p "Do you want to proceed? (y/n) " choice
+if [[ "$choice" =~ ^[Yy]$ ]]; then
     append_start_script
     configure_autologin
     edit_logind_conf
-    echo "Script installed successfully."
-#fi
+    echo "Setup complete. Please restart your system for changes to take effect."
+else
+    echo "Setup aborted."
+fi
 
-# Instruct user to reboot to test, store script
-echo .
-echo .
-lsb_release -a
-echo .
-echo .
-echo "tested on Ubuntu Server 22.04 jammy"
-echo .
-echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━.━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-echo "┃                                                            ┃"
-echo "┃    Store this script. It is the Installer & Uninstaller    ┃"
-echo "┃  Both simply use the same command:  sudo ./autonosnode1.sh ┃"
-echo "┃                                                            ┃"
-echo "┃ *In your PC's BIOS, setup auto-boot when power is applied* ┃"
-echo "┃                                                            ┃"
-echo "┃                                                            ┃"
-echo "┃         You may now test results with sudo reboot          ┃"
-echo "┃                                                            ┃"
-echo "┃                                                            ┃"
-echo "┃   by MachoDrone                               v0.240517    ┃"
-echo "┃                                                            ┃"
-echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━.━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+# Check if the script is already installed
+if grep -q "Launch Nosana node start script" .profile; then
+    read -p "It looks like the script is already installed. Do you want to uninstall it? (y/n) " uninstall_choice
+    if [[ "$uninstall_choice" =~ ^[Yy]$ ]]; then
+        uninstall_script
+    else
+        echo "Uninstall aborted."
+    fi
+fi

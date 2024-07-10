@@ -1,21 +1,4 @@
 #!/bin/bash
-# Automatically start Nosana Node on tty1 for Ubuntu Server
-# For Ubuntu Desktop, the GUI is likely already on tty1, so this project has a fork named autonosnode2.sh which auto starts Nosana node on tty2.
-# Starting on tty2 may be convenient for Ubuntu Desktop, but it is highly recommended to run from a terminal in the GUI for ease of screencaptures / support.
-
-# The objective of this script is to automatically launch Nosana Node on Ubuntu Server 22.04.
-# It will resmble operation of the node as if the user manually logged-in and ran the Nosana node start script in the cli.
-# This will be 100% familiar to a novice owner/operator who may already be doing the manual tasks.
-# Before running this script, the user will need to type the command: chmod +x autonosnode1.sh
-
-# To take full advantage of this script, users will need to edit the BIOS of their PC to automatically restart the PC after power is reapplied.
-# e.g. after an outage with their mains utility/power company.
-
-#./autonosnode1.sh
-# The objective of this script is to automatically launch Nosana Node on Ubuntu Server 22.04
-# It will resmble operation of the node as if the user manually logs-in and runs the Nosana start script.
-# This will be 100% familiar to a novice owner/operator who may already be doing the manual tasks.
-
 # Function to show current OS version and draw a box with introduction message
 echo .
 echo "lsb_release -a (show current version of Ubuntu Server)"
@@ -47,14 +30,13 @@ draw_box() {
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo .
 echo .
-
 }
 
 # Function to append start script to .profile
 append_start_script() {
     # Append the start script for the Nosana node to .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     chvt 2\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     exit\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     logout\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     echo hello\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     echo hello\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     echo hello\n fi\n' >> .profile
@@ -110,34 +92,6 @@ edit_logind_conf() {
     echo "ReserveVT=13" | sudo tee -a /etc/systemd/logind.conf
 }
 
-# Function to uninstall the script
-uninstall_script() {
-    echo "Uninstalling the script..."
-    # Remove the appended lines from .profile
-    sed -i '/# Launch Nosana node start script/,/# End of Nosana node start script/d' .profile
-
-    # Remove the systemd service override configurations
-    rm -rf ~/.config/systemd/user/getty@tty1.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty2.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty3.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty4.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty5.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty6.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty7.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty8.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty9.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty10.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty11.service.d/
-    rm -rf ~/.config/systemd/user/getty@tty12.service.d/
-
-    # Restore /etc/systemd/logind.conf to its original state
-    sudo sed -i '/^# Commented by autonosnode script: / s/^# Commented by autonosnode script: //' /etc/systemd/logind.conf
-    sudo sed -i '/^NAutoVTs=12/d' /etc/systemd/logind.conf
-    sudo sed -i '/^ReserveVT=13/d' /etc/systemd/logind.conf
-
-    echo "Script uninstalled successfully."
-}
-
 # Main script execution
 draw_box
 read -p "Do you want to proceed? (y/n) " choice
@@ -148,14 +102,4 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
     echo "Setup complete. Please restart your system for changes to take effect."
 else
     echo "Setup aborted."
-fi
-
-# Check if the script is already installed
-if grep -q "Launch Nosana node start script" .profile; then
-    read -p "It looks like the script is already installed. Do you want to uninstall it? (y/n) " uninstall_choice
-    if [[ "$uninstall_choice" =~ ^[Yy]$ ]]; then
-        uninstall_script
-    else
-        echo "Uninstall aborted."
-    fi
 fi

@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep 5
 sudo -V
 # Function to show current OS version and draw a box with introduction message
 echo .

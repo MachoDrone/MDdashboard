@@ -1,4 +1,3 @@
-#!/bin/bash
 echo password:
 sudo -V
 # Function to show current OS version and draw a box with introduction message

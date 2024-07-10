@@ -53,18 +53,18 @@ append_start_script() {
 # Function to configure autologin for tty1
 configure_autologin() {
     # Create the directory for systemd service override
-    mkdir -p /etc/systemd/system/getty@tty1.service.d/
-    mkdir -p /etc/systemd/system/getty@tty2.service.d/
-    mkdir -p /etc/systemd/system/getty@tty3.service.d/
-    mkdir -p /etc/systemd/system/getty@tty4.service.d/
-    mkdir -p /etc/systemd/system/getty@tty5.service.d/
-    mkdir -p /etc/systemd/system/getty@tty6.service.d/
-    mkdir -p /etc/systemd/system/getty@tty7.service.d/
-    mkdir -p /etc/systemd/system/getty@tty8.service.d/
-    mkdir -p /etc/systemd/system/getty@tty9.service.d/
-    mkdir -p /etc/systemd/system/getty@tty10.service.d/
-    mkdir -p /etc/systemd/system/getty@tty11.service.d/
-    mkdir -p /etc/systemd/system/getty@tty12.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty2.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty3.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty4.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty5.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty6.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty7.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty8.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty9.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty10.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty11.service.d/
+    sudo mkdir -p /etc/systemd/system/getty@tty12.service.d/
 
     # Set up autologin in override.conf
     printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty1.service.d/override.conf

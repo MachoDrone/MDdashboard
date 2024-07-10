@@ -140,7 +140,8 @@ fi
 #        echo "Exiting..."
 #        exit 0
 #    fi
-else
+#else
+if 1+1=2 
     append_start_script
     configure_autologin
     edit_logind_conf

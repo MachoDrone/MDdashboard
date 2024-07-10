@@ -1,5 +1,5 @@
-echo password:
-sudo -V
+#!/bin/bash
+sudo -v
 # Function to show current OS version and draw a box with introduction message
 echo .
 echo "lsb_release -a (show current version of Ubuntu Server)"

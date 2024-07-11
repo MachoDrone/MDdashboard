@@ -41,7 +41,7 @@ append_start_script() {
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     echo hello\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     echo hello\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     echo hello\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     echo hello\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     nvtop\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     ./nvitop\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty7 ]]; then\n     sudo linuxvnc 1 -rfbport 5901\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty8 ]]; then\n     sudo linuxvnc 2 -rfbport 5902\n fi\n' >> .profile
@@ -112,8 +112,12 @@ pip3 install .
 pip3 install -r requirements.txt
 cd ~/
 
-# create nvitop.sh
+# Create nvitop.sh
 printf "cd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh && chmod +x nvitop.sh
+
+# Install nvtop
+sudo apt install nvtop
+
 
 #    echo "Setup complete. Please restart your system for changes to take effect."
 #else

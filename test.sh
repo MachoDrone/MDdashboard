@@ -102,7 +102,7 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
     edit_logind_conf
 
 # Install linuxvnc
-sudo apt install linuxvnc
+sudo apt install linuxvnc -y
 
 #    echo "Setup complete. Please restart your system for changes to take effect."
 #else

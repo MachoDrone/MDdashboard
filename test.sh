@@ -100,6 +100,10 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
     append_start_script
     configure_autologin
     edit_logind_conf
+
+# Install linuxvnc
+sudo apt install linuxvnc
+
 #    echo "Setup complete. Please restart your system for changes to take effect."
 #else
 #    echo "Setup aborted."

@@ -104,6 +104,17 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
 # Install linuxvnc
 sudo apt install linuxvnc -y
 
+# Install nvitop
+sudo apt install python3-pip -y
+git clone --depth=1 https://github.com/XuehaiPan/nvitop.git
+cd nvitop
+pip3 install .
+pip3 install -r requirements.txt
+cd ~/
+
+# create nvitop.sh
+printf "cd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh && chmod +x nvitop.sh
+
 #    echo "Setup complete. Please restart your system for changes to take effect."
 #else
 #    echo "Setup aborted."

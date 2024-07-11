@@ -1,5 +1,13 @@
 #!/bin/bash
-#wget -qO - https://raw.githubusercontent.com/MachoDrone/test-7-10-24/main/test.sh | sudo bash
+# passwordless sudo: e.g. `usrnme	ALL=(ALL) NOPASSWD:ALL`  <--replace usrnme with your username
+# command: sudo visudo
+#
+#    #Allow members of group sudo to execute any command
+#    %sudo	ALL=(ALL:ALL) ALL
+#    usrnme	ALL=(ALL) NOPASSWD:ALL
+#
+# Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/test-7-10-24/main/test.sh | sudo bash
+
 # Function to show current OS version and draw a box with introduction message
 echo .
 echo "lsb_release -a (show current version of Ubuntu Server)"
@@ -33,7 +41,7 @@ echo .
 echo .
 }
 
-# Function to append start script to .profile
+# Append start commands to .profile
 append_start_script() {
     # Append the start script for the Nosana node to .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     chvt 2\n fi\n' >> .profile
@@ -62,7 +70,7 @@ append_start_script() {
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty12 ]]; then\n    sudo linuxvnc 6 -rfbport 5906 -rfbportv6 5906\n fi\n' >> .profile
 }
 
-# Function to configure autologin for tty1
+# Configure autologin for tty1-tty12
 configure_autologin() {
     # Create the directory for systemd service override
     sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
@@ -78,7 +86,7 @@ configure_autologin() {
     sudo mkdir -p /etc/systemd/system/getty@tty11.service.d/
     sudo mkdir -p /etc/systemd/system/getty@tty12.service.d/
 
-    # Set up autologin in override.conf
+    # Set up 12 autologin in override.conf files
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty1.service.d/override.conf
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty2.service.d/override.conf
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty3.service.d/override.conf
@@ -93,7 +101,7 @@ configure_autologin() {
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty12.service.d/override.conf
 }
 
-# Function to edit /etc/systemd/logind.conf
+# Function to edit /etc/systemd/logind.conf to enable 12ttys
 edit_logind_conf() {
     # Edit /etc/systemd/logind.conf to enable autologin
     sudo sed -i '/^NAutoVTs/ s/^/# Commented by autonosnode script: /' /etc/systemd/logind.conf
@@ -105,17 +113,17 @@ edit_logind_conf() {
 }
 
 # Main script execution
-draw_box
-read -p "Do you want to proceed? (y/n) " choice
-if [[ "$choice" =~ ^[Yy]$ ]]; then
+# draw_box
+# read -p "Do you want to proceed? (y/n) " choice
+#if [[ "$choice" =~ ^[Yy]$ ]]; then
     append_start_script
     configure_autologin
     edit_logind_conf
 
-# Install linuxvnc
+# Install linuxvnc for tty6-tty12
 sudo apt install linuxvnc -y
 
-# Install nvitop
+# Install nvitop for tty6
 sudo apt install python3-pip -y
 git clone --depth=1 https://github.com/XuehaiPan/nvitop.git
 cd nvitop
@@ -127,7 +135,7 @@ cd ~/
 printf "cd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh
 chmod +x nvitop.sh
 
-# Install nvtop
+# Install nvtop for tty5
 sudo apt install nvtop
 
 

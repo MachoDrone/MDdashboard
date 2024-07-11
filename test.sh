@@ -18,27 +18,28 @@ echo .
 echo .
 echo "tested on Ubuntu Server 22.04 jammy"
 echo .
+echo PRESS ctrl-c TO CANCEL, PRESS ANY KEY TO CONTINUE, OR SCRIPT WILL BEGIN IN ONE MINUTE ...
+echo .
 draw_box() {
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-    echo "┃  by MachoDrone                                                v0.240517  ┃"
+    echo "┃  by MachoDrone                                                v0.240711  ┃"
     echo "┃                                                                          ┃"
-    echo "┃                                                                          ┃"
-    echo "┃      This script will configure autologin for Nosana node on tty1.       ┃"
-    echo "┃                                                                          ┃"
+    echo "┃    This script will prepare autologin for Nosana node on tty2-tty6       ┃"
     echo "┃                                                                          ┃"
     echo "┃ **THIS IS FOR Ubuntu Server (non-GUI), NOT FOR WSL2 nor Ubuntu Desktop** ┃"
     echo "┃                                                                          ┃"
     echo "┃      It will perform the following actions:                              ┃"
     echo "┃          1. Append the Nosana node start script to .profile              ┃"
-    echo "┃          2. Configure autologin for tty1                                 ┃"
+    echo "┃          2. Configure and activate autologin for tty1-tty12              ┃"
     echo "┃          3. Edit /etc/systemd/logind.conf to enable autologin            ┃"
     echo "┃                                                                          ┃"
-    echo "┃      If the script has already been run, it will offer to uninstall.     ┃"
+    echo "┃ THERE IS NO UNINSTALLER,  I RECOMMEND TO INSTALL ON FRESH UBUNTU INSTALL ┃"
+    echo "┃                   This has been tested on Ubuntu 22.04                   ┃"
     echo "┃                                                                          ┃"
-    echo "┃      Do you want to proceed? (y/n)                                       ┃"
     echo "┃                                                                          ┃"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo .
+read -t 60 -p "PRESS ctrl-c TO CANCEL, PRESS ANY KEY TO CONTINUE, OR SCRIPT WILL BEGIN IN ONE MINUTE ..."
 echo .
 }
 

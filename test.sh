@@ -5,6 +5,7 @@
 #    #Allow members of group sudo to execute any command
 #    %sudo	ALL=(ALL:ALL) ALL
 #    usrnme	ALL=(ALL) NOPASSWD:ALL
+# no reboot required for passwordless sudo
 #
 # Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/test-7-10-24/main/test.sh | sudo bash
 

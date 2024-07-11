@@ -113,7 +113,8 @@ pip3 install -r requirements.txt
 cd ~/
 
 # Create nvitop.sh
-printf "cd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh && chmod +x nvitop.sh
+printf "cd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh
+chmod +x nvitop.sh
 
 # Install nvtop
 sudo apt install nvtop

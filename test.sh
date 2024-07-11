@@ -1,4 +1,5 @@
 #!/bin/bash
+#wget -qO - https://raw.githubusercontent.com/MachoDrone/test-7-10-24/main/test.sh | sudo bash
 # Function to show current OS version and draw a box with introduction message
 echo .
 echo "lsb_release -a (show current version of Ubuntu Server)"

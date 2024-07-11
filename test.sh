@@ -99,7 +99,7 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
     append_start_script
     configure_autologin
     edit_logind_conf
-    echo "Setup complete. Please restart your system for changes to take effect."
+#    echo "Setup complete. Please restart your system for changes to take effect."
 #else
 #    echo "Setup aborted."
 #fi

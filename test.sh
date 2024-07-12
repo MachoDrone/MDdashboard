@@ -132,13 +132,14 @@ cd nvitop
 pip3 install .
 pip3 install -r requirements.txt
 cd ~/
-
-# Create nvitop.sh
-printf "cd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh
+printf "#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh
 chmod +x nvitop.sh
 
 # Install nvtop for tty5
 sudo apt install nvtop
+printf "#!/bin/sh\nnvtop" > nvtop.sh
+chmod +x nvtop.sh
+
 
 
 #    echo "Setup complete. Please restart your system for changes to take effect."

@@ -127,6 +127,7 @@ sudo apt install linuxvnc -y
 
 # Install nvitop for tty6
 sudo apt install python3-pip -y
+sudo apt install git -y
 git clone --depth=1 https://github.com/XuehaiPan/nvitop.git
 cd nvitop
 pip3 install .

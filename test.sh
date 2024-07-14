@@ -122,6 +122,11 @@ edit_logind_conf() {
     configure_autologin
     edit_logind_conf
 
+sudo apt update
+
+# Install nano
+sudo apt install nano
+
 # Install linuxvnc for tty6-tty12
 sudo apt install linuxvnc -y
 
@@ -140,8 +145,6 @@ chmod +x nvitop.sh
 sudo apt install nvtop
 printf "#!/bin/sh\nnvtop" > nvtop.sh
 chmod +x nvtop.sh
-
-
 
 #    echo "Setup complete. Please restart your system for changes to take effect."
 #else

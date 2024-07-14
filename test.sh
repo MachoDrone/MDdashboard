@@ -130,8 +130,8 @@ sudo apt install python3-pip -y
 sudo apt install git -y
 git clone --depth=1 https://github.com/XuehaiPan/nvitop.git
 cd nvitop
-pip3 install .
-pip3 install -r requirements.txt
+pip3 install . --no-color
+pip3 install -r requirements.txt --no-color
 cd ~/
 printf "#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh
 chmod +x nvitop.sh

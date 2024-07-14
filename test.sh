@@ -1,12 +1,7 @@
 #!/bin/bash
-# passwordless sudo: e.g. `usrnme	ALL=(ALL) NOPASSWD:ALL`  <--replace usrnme with your username
-# command: sudo visudo
-#
-#    #Allow members of group sudo to execute any command
-#    %sudo	ALL=(ALL:ALL) ALL
-#    usrnme	ALL=(ALL) NOPASSWD:ALL
+
 # no reboot required for passwordless sudo
-#
+
 # Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/test-7-10-24/main/test.sh | sudo bash
 
 # Function to show current OS version and draw a box with introduction message
@@ -113,6 +108,32 @@ edit_logind_conf() {
     echo "NAutoVTs=12" | sudo tee -a /etc/systemd/logind.conf
     echo "ReserveVT=13" | sudo tee -a /etc/systemd/logind.conf
 }
+
+# Edit sudoer for passwordless sudo
+#!/bin/bash
+
+#run with wget -qO - https://raw.githubusercontent.com/MachoDrone/PslssSd/main/psswrdlsssd.sh | sudo bash
+# no reboot required
+
+# sudoers entry
+sudoers_entry="$SUDO_USER ALL=(ALL) NOPASSWD:ALL"
+
+# add the entry to sudoers using a temp file
+temp_file=$(mktemp)
+sudo cp /etc/sudoers $temp_file
+echo "$sudoers_entry" | sudo tee -a $temp_file > /dev/null
+
+# validate the sudoers file
+sudo visudo -c -f $temp_file
+if [ $? -eq 0 ]; then
+    sudo cp $temp_file /etc/sudoers
+    echo "Sudoers file updated successfully."
+else
+    echo "Error: Invalid sudoers file. Changes were not applied."
+fi
+
+# clean up temp file
+rm $temp_file
 
 # Main script execution
 # draw_box

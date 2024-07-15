@@ -159,7 +159,7 @@ cd nvitop
 pip3 install . --no-color
 pip3 install -r requirements.txt --no-color
 cd ~/
-printf "#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd .." > nvitop.sh
+printf '#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..' > nvitop.sh
 chmod +x nvitop.sh
 
 # Install nvtop for tty5

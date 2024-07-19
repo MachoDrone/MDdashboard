@@ -2,7 +2,7 @@
 
 # no reboot required for passwordless sudo
 
-# Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/MDdashboard/main/MDdashboard.sh | sudo bash
+# Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/MDdashboard/main/MDd.sh | sudo bash
 
 # Function to show current OS version and draw a box with introduction message
 echo .
@@ -168,6 +168,8 @@ chmod +x glances.sh
 # Create startscript for node
 printf '#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n' > startscript.sh
 chmod +x startscript.sh
+
+sudo rm -r MDd.sh
 
 echo ****************************************************
 echo "Setup complete. Please restart your system to test."

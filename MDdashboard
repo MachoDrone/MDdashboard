@@ -48,11 +48,11 @@ append_start_script() {
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     chvt 4\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     ls\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     chvt 5\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     ls\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     ./glances.sh\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     chvt 6\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     bash <(wget -qO- https://nosana.io/testgrid.sh)\n fi\n' >> .profile 
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     ./startnode.sh\n fi\n' >> .profile 
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     chvt 7\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     nvtop\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     ./nvtop.sh\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty7 ]]; then\n     chvt 8\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty7 ]]; then\n     ./nvitop.sh\n fi\n' >> .profile
 # setup vnc sessions
@@ -143,26 +143,33 @@ sudo apt update
 # Install nano
 sudo apt install nano
 
-# Install linuxvnc for tty6-tty12
+# Install linuxvnc
 sudo apt install linuxvnc -y
 
-# Install nvitop for tty6
+# Install nvitop (this is not nvtop)
 sudo apt install python3-pip -y
 sudo apt install git -y
 git clone --depth=1 https://github.com/XuehaiPan/nvitop.git
 cd nvitop
 pip3 install . --no-color
 pip3 install -r requirements.txt --no-color
-cd ~/
+cd ~
 printf '#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..' > nvitop.sh
 chmod +x nvitop.sh
 
-# Install nvtop for tty5
+# Install nvtop (this is not nvitop)
 sudo apt install nvtop
 printf "#!/bin/sh\nnvtop" > nvtop.sh
 chmod +x nvtop.sh
 
-#    echo "Setup complete. Please restart your system for changes to take effect."
-#else
-#    echo "Setup aborted."
-#fi
+# Install glances
+wget -O- https://bit.ly/glances | /bin/bash
+printf "#!/bin/sh\nglances" > glances.sh
+chmod +x glances.sh
+
+# Create startscript for node
+printf '#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n' > startscript.sh
+chmod +x startscript.sh
+
+echo ****************************************************
+echo "Setup complete. Please restart your system to test."

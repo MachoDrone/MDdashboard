@@ -111,7 +111,7 @@ edit_logind_conf() {
 
 # Edit sudoer for passwordless sudo
 # sudoers entry
-su - $USER -c "
+su - $USEsu - $USER -c "
 sudoers_entry="$SUDO_USER ALL=(ALL) NOPASSWD:ALL
 
 # add the entry to sudoers using a temp file

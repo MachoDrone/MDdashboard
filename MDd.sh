@@ -3,6 +3,7 @@
 # no reboot required for passwordless sudo
 
 # Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/MDdashboard/main/MDd.sh | sudo bash
+# wget -qO MDd.sh 'https://raw.githubusercontent.com/MachoDrone/MDdashboard/main/MDd.sh' && bash MDd.sh
 
 # Function to show current OS version and draw a box with introduction message
 echo .

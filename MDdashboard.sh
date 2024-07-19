@@ -15,7 +15,6 @@ echo "tested on Ubuntu Server 22.04 jammy"
 echo .
 echo PRESS ctrl-c TO CANCEL, PRESS ANY KEY TO CONTINUE, OR SCRIPT WILL BEGIN IN ONE MINUTE ...
 echo .
-draw_box() {
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┃  by MachoDrone                                                v0.240711  ┃"
     echo "┃                                                                          ┃"
@@ -36,7 +35,6 @@ draw_box() {
 echo .
 read -t 60 -p "PRESS ctrl-c TO CANCEL, PRESS ANY KEY TO CONTINUE, OR SCRIPT WILL BEGIN IN ONE MINUTE ..."
 echo .
-}
 
 # Append start commands to .profile
 append_start_script() {

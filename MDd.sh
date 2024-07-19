@@ -111,6 +111,8 @@ edit_logind_conf() {
 
 # Edit sudoer for passwordless sudo
 # sudoers entry
+# Configure autologin for tty1-tty12
+passwordless_sudo() {
 echo *** SUDO USER ***
 echo *** SUDO USER ***
 echo *** SUDO USER ***
@@ -135,6 +137,7 @@ else
 fi
 # clean up temp file
 rm $temp_file
+}
 
 # Main script execution
 # draw_box
@@ -143,6 +146,7 @@ rm $temp_file
     append_start_script
     configure_autologin
     edit_logind_conf
+    passwordless_sudo
 
 sudo apt update
 

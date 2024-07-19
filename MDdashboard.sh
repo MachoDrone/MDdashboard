@@ -2,7 +2,7 @@
 
 # no reboot required for passwordless sudo
 
-# Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/test-7-10-24/main/test.sh | sudo bash
+# Installer: wget -qO - https://raw.githubusercontent.com/MachoDrone/MDdashboard/main/MDdashboard.sh | sudo bash
 
 # Function to show current OS version and draw a box with introduction message
 echo .

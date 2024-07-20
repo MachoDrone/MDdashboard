@@ -215,7 +215,7 @@ systemctl set-default multi-user.target
 # Restart the system
 echo "Configuration complete. Please reboot the system to apply changes."
 
-exit 0
+# exit 0
 
 
 systemctl get-default

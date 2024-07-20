@@ -41,7 +41,7 @@ echo .
 append_start_script() {
     # Append the start script for the Nosana node to .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     chvt 2\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     ls\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     sudo systemctl isolate graphical\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     chvt 3\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     ls\n fi\n' >> .profile 
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     chvt 4\n fi\n' >> .profile
@@ -49,6 +49,7 @@ append_start_script() {
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     chvt 5\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     ./glances.sh\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     chvt 6\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     rm -f MDd.sh\n fi\n' >> .profile 
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty5 ]]; then\n     ./startnode.sh\n fi\n' >> .profile 
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     chvt 7\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty6 ]]; then\n     ./nvtop.sh\n fi\n' >> .profile
@@ -164,24 +165,26 @@ cd nvitop
 pip3 install . --no-color
 pip3 install -r requirements.txt --no-color
 cd ~
-sudo printf '\n#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..' > nvitop.sh
+sudo printf '\n#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..\n' > nvitop.sh
 chmod +x nvitop.sh
 
 # Install nvtop (this is not nvitop)
 sudo apt install nvtop
-sudo printf '\n#!/bin/sh\nnvtop' > nvtop.sh
+sudo printf '\n#!/bin/sh\nnvtop\n' > nvtop.sh
 chmod +x nvtop.sh
 
 # Install glances
 wget -O- https://bit.ly/glances | /bin/bash
-sudo printf '\n#!/bin/sh\nglances' > glances.sh
+sudo printf '\n#!/bin/sh\nglances\n' > glances.sh
 chmod +x glances.sh
 
 # Create startscript for node
 sudo printf '#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n' > startscript.sh
 chmod +x startscript.sh
 
-sudo rm -- "$0"
+mkdir .nosana
+#nano .nosana/nosana_key.json
 
-echo ****************************************************
-echo "Setup complete. Please restart your system to test."
+systemctl get-default
+sudo systemctl set-default multi-user.target
+sudo systemctl reboot

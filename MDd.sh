@@ -180,7 +180,43 @@ sudo chmod +x startscript.sh
 mkdir .nosana
 #nano .nosana/nosana_key.json
 
-sudo rm -f MDd.sh
+
+# Check if the script is run with sudo
+if [ "$(id -u)" -ne 0 ]; then
+  echo "Please run this script with sudo."
+  exit 1
+fi
+
+# Backup the existing custom.conf file
+if [ -f /etc/gdm3/custom.conf ]; then
+  cp /etc/gdm3/custom.conf /etc/gdm3/custom.conf.bak
+  echo "Backup of custom.conf created at /etc/gdm3/custom.conf.bak"
+fi
+
+# Modify /etc/gdm3/custom.conf
+echo "Modifying /etc/gdm3/custom.conf to set FirstVT=2..."
+
+# Check if the [daemon] section already exists
+if grep -q '^\[daemon\]' /etc/gdm3/custom.conf; then
+  # Add or replace the FirstVT setting in the [daemon] section
+  sed -i '/^\[daemon\]/,/^\[.*\]/ {/^\[daemon\]/! {/FirstVT=/d}}' /etc/gdm3/custom.conf
+  sed -i '/^\[daemon\]/a FirstVT=2' /etc/gdm3/custom.conf
+else
+  # Add the [daemon] section and the FirstVT setting at the end of the file
+  echo -e "\n[daemon]\nFirstVT=2" >> /etc/gdm3/custom.conf
+fi
+
+echo "Configuration updated."
+
+# Set the default target to multi-user.target
+echo "Setting default target to multi-user.target..."
+systemctl set-default multi-user.target
+
+# Restart the system
+echo "Configuration complete. Please reboot the system to apply changes."
+
+exit 0
+
 
 systemctl get-default
 sudo systemctl set-default multi-user.target

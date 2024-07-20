@@ -174,7 +174,7 @@ sudo chmod +x glances.sh
 
 # Create startscript for node
 sudo printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > /home/$SUDO_USER/startscript.sh
-chmod +x startscript.sh
+sudo chmod +x startscript.sh
 
 mkdir .nosana
 #nano .nosana/nosana_key.json

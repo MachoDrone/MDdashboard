@@ -157,22 +157,22 @@ git clone --depth=1 https://github.com/XuehaiPan/nvitop.git
 cd nvitop
 pip3 install . --no-color
 pip3 install -r requirements.txt --no-color
-cd ~
-sudo printf "\n#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..\n" > /home/$SUDO_USER/nvitop.sh
+cd ~/
+printf "\n#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..\n" > /home/$SUDO_USER/nvitop.sh
 chmod +x nvitop.sh
 
 # Install nvtop (this is not nvitop)
 sudo apt install nvtop
-sudo printf "\n#!/bin/sh\nnvtop\n" > nvtop.sh
+printf "\n#!/bin/sh\nnvtop\n" > /home/$SUDO_USER/nvtop.sh
 chmod +x nvtop.sh
 
 # Install glances
 wget -O- https://bit.ly/glances | /bin/bash
-sudo printf "\n#!/bin/sh\nglances\n" > glances.sh
+printf "\n#!/bin/sh\nglances\n" > /home/$SUDO_USER/glances.sh
 chmod +x glances.sh
 
 # Create startscript for node
-sudo printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > startscript.sh
+printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > /home/$SUDO_USER/startscript.sh
 chmod +x startscript.sh
 
 mkdir .nosana
@@ -182,4 +182,4 @@ sudo rm -f MDd.sh
 
 systemctl get-default
 sudo systemctl set-default multi-user.target
-sudo systemctl reboot
+#sudo systemctl reboot

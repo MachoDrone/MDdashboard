@@ -182,4 +182,4 @@ sudo rm -f MDd.sh
 
 systemctl get-default
 sudo systemctl set-default multi-user.target
-#sudo systemctl reboot
+sudo systemctl reboot

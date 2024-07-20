@@ -158,21 +158,21 @@ cd nvitop
 pip3 install . --no-color
 pip3 install -r requirements.txt --no-color
 cd ~
-sudo printf "\n#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..\n" > nvitop.sh
+sudo printf "\n#!/bin/sh\ncd nvitop\npython3 -m nvitop --monitor auto --colorful\ncd ..\n" > /home/$SUDO_USER/nvitop.sh
 chmod +x nvitop.sh
 
 # Install nvtop (this is not nvitop)
 sudo apt install nvtop
-printf "\n#!/bin/sh\nnvtop\n" >> nvtop.sh
+sudo printf "\n#!/bin/sh\nnvtop\n" > nvtop.sh
 chmod +x nvtop.sh
 
 # Install glances
 wget -O- https://bit.ly/glances | /bin/bash
-sudo printf "\n#!/bin/sh\nglances\n" >> glances.sh
+sudo printf "\n#!/bin/sh\nglances\n" > glances.sh
 chmod +x glances.sh
 
 # Create startscript for node
-printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > startscript.sh
+sudo printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > startscript.sh
 chmod +x startscript.sh
 
 mkdir .nosana

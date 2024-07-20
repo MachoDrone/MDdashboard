@@ -114,13 +114,6 @@ edit_logind_conf() {
 # sudoers entry
 # Configure autologin for tty1-tty12
 passwordless_sudo() {
-echo *** SUDO USER ***
-echo *** SUDO USER ***
-echo *** SUDO USER ***
-echo *** SUDO USER ***
-echo *** SUDO USER ***
-echo *** SUDO USER ***
-echo *** SUDO USER ***
 sudoers_entry="$SUDO_USER ALL=(ALL) NOPASSWD:ALL"
 
 # add the entry to sudoers using a temp file
@@ -170,22 +163,22 @@ chmod +x nvitop.sh
 
 # Install nvtop (this is not nvitop)
 sudo apt install nvtop
-sudo printf "\n#!/bin/sh\nnvtop\n" > nvtop.sh
+printf "\n#!/bin/sh\nnvtop\n" >> nvtop.sh
 chmod +x nvtop.sh
 
 # Install glances
 wget -O- https://bit.ly/glances | /bin/bash
-sudo printf "\n#!/bin/sh\nglances\n" > glances.sh
+sudo printf "\n#!/bin/sh\nglances\n" >> glances.sh
 chmod +x glances.sh
 
 # Create startscript for node
-sudo printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > startscript.sh
+printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > startscript.sh
 chmod +x startscript.sh
 
 mkdir .nosana
 #nano .nosana/nosana_key.json
 
-rm -f MDd
+sudo rm -f MDd.sh
 
 systemctl get-default
 sudo systemctl set-default multi-user.target

@@ -181,7 +181,7 @@ chmod +x glances.sh
 sudo printf '#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n' > startscript.sh
 chmod +x startscript.sh
 
-rm -- $0
+sudo rm -- "$0"
 
 echo ****************************************************
 echo "Setup complete. Please restart your system to test."

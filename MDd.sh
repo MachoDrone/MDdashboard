@@ -40,12 +40,11 @@ echo .
 # Append start commands to .profile
 append_start_script() {
     # Append the start script for the Nosana node to .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     chvt 2\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     ls\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     chvt 3\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     rm -f MDd.sh\n fi\n' >> .profile    
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     sudo systemctl start gdm3\n fi\n' >> .profile 
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     chvt 3\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n     exit\n fi\n' >> .profile
+#    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then\n     chvt 3\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     chvt 4\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     rm -f MDd.sh\n fi\n' >> .profile    
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     ls\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty3 ]]; then\n     ./glances.sh\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty4 ]]; then\n     chvt 5\n fi\n' >> .profile
@@ -67,6 +66,7 @@ append_start_script() {
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty11 ]]; then\n    sudo linuxvnc 6 -rfbport 5906 -rfbportv6 5906\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty12 ]]; then\n    chvt 5\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty12 ]]; then\n    ls\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty12 ]]; then\n     sudo systemctl start gdm3\n fi\n' >> .profile 
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty12 ]]; then\n    sudo linuxvnc 7 -rfbport 5907 -rfbportv6 5907\n fi\n' >> .profile
 }
 
@@ -74,7 +74,7 @@ append_start_script() {
 configure_autologin() {
     # Create the directory for systemd service override
     sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
-    sudo mkdir -p /etc/systemd/system/getty@tty2.service.d/
+#    sudo mkdir -p /etc/systemd/system/getty@tty2.service.d/
     sudo mkdir -p /etc/systemd/system/getty@tty3.service.d/
     sudo mkdir -p /etc/systemd/system/getty@tty4.service.d/
     sudo mkdir -p /etc/systemd/system/getty@tty5.service.d/
@@ -88,7 +88,7 @@ configure_autologin() {
 
     # Set up 12 autologin in override.conf files
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty1.service.d/override.conf
-    sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty2.service.d/override.conf
+#    sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty2.service.d/override.conf
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty3.service.d/override.conf
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty4.service.d/override.conf
     sudo printf "[Service]\nExecStart=\nExecStart=-/sbin/agetty --noissue --autologin $SUDO_USER %%I \$TERM\nType=idle\n" > /etc/systemd/system/getty@tty5.service.d/override.conf

@@ -194,7 +194,7 @@ printf '\n#!/bin/sh\nclear\ngrep "Results for qwen:7b" .nosana/flows.json\necho 
 chmod +x /home/$SUDO_USER/tpsview.sh
 
 # Create startnode.sh
-printf '\n#!/bin/sh\ncbash <(wget -qO- https://nosana.io/testgrid.sh)\necho ------------------------------------------\necho 10 sec pause for ctrl-c option\necho ------------------------------------------\nsleep 10\n./gowget.sh\n' > /home/$SUDO_USER/startnode.sh
+printf '\n#!/bin/sh\ncbash <(wget -qO- https://nosana.io/testgrid.sh)\necho ------------------------------------------\necho 10 sec pause for ctrl-c option\necho ------------------------------------------\nsleep 10\n./startnode.sh.sh\n' > /home/$SUDO_USER/startnode.sh
 chmod +x /home/$SUDO_USER/startnode.sh
 
 mkdir .nosana

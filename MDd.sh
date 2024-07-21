@@ -185,7 +185,7 @@ printf "#!/bin/sh\nbash <(wget -qO- https://nosana.io/testgrid.sh)\n" > /home/$S
 chmod +x /home/$SUDO_USER/startscript.sh
 
 # Install Tokens per second monitor
-printf '\n#!/bin/sh\n\clear\grep "Results for qwen:7b" .nosana/flows.json\nsleep 60\n./tpsview.sh\n' > /home/$SUDO_USER/tpsview.sh
+printf '\n#!/bin/sh\nclear\ngrep "Results for qwen:7b" .nosana/flows.json\necho updates every 60 seconds\nsleep 60\n./tpsview.sh\n' > /home/$SUDO_USER/tpsview.sh
 chmod +x /home/$SUDO_USER/tpsview.sh
 
 mkdir .nosana

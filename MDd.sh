@@ -57,7 +57,7 @@ append_start_script() {
 
 # setup vnc sessions
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty8 ]]; then\n     chvt 9\n fi\n' >> .profile
-    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty8 ]]; then\n     sudo linuxvnc 3 -rfbport 5904 -rfbportv6 5904\n fi\n' >> .profile
+    printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty8 ]]; then\n     sudo linuxvnc 3 -rfbport 5903 -rfbportv6 5904\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty9 ]]; then\n     chvt 10\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty9 ]]; then\n     sudo linuxvnc 4 -rfbport 5904 -rfbportv6 5904\n fi\n' >> .profile
     printf '\n # Launch Nosana node start script\n if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty10 ]]; then\n    chvt 11\n fi\n' >> .profile
@@ -142,7 +142,7 @@ rm $temp_file
     append_start_script
     configure_autologin
     edit_logind_conf
-    passwordless_sudo
+#    passwordless_sudo
 
 sudo apt update
 
@@ -217,7 +217,8 @@ echo "Configuration complete. Please reboot the system to apply changes."
 
 # exit 0
 
-
+    passwordless_sudo
+    
 systemctl get-default
 sudo systemctl set-default multi-user.target
 sudo systemctl reboot

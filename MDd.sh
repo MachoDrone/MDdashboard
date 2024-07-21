@@ -193,6 +193,10 @@ chmod +x /home/$SUDO_USER/startscript.sh
 printf '\n#!/bin/sh\nclear\ngrep "Results for qwen:7b" .nosana/flows.json\necho updates every 60 seconds\nsleep 60\n./tpsview.sh\n' > /home/$SUDO_USER/tpsview.sh
 chmod +x /home/$SUDO_USER/tpsview.sh
 
+# Create startnode.sh
+printf '\n#!/bin/sh\ncbash <(wget -qO- https://nosana.io/testgrid.sh)\necho ------------------------------------------\necho 10 sec pause for ctrl-c option\necho ------------------------------------------\nsleep 10\n./gowget.sh\n' > /home/$SUDO_USER/startnode.sh
+chmod +x /home/$SUDO_USER/startnode.sh
+
 mkdir .nosana
 #nano .nosana/nosana_key.json
 

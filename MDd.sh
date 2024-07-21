@@ -228,6 +228,9 @@ echo "Configuration complete. Please reboot the system to apply changes."
 
 # exit 0
 
+# Install openssh-server
+sudo apt install openssh-server -y
+    
     passwordless_sudo
     
 systemctl get-default
